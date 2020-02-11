@@ -3,10 +3,10 @@ PROJECT (slam) #Set the project name
 
 
 # Add PCL library dependencies
-FIND_PACKAGE( PCL REQUIRED )
+FIND_PACKAGE(PCL REQUIRED)
 
 # Add opencv dependency
-FIND_PACKAGE (OpenCV REQUIRED)
+FIND_PACKAGE(OpenCV REQUIRED)
 
 # Add header and library files
 ADD_DEFINITIONS (${PCL_DEFINITIONS})
