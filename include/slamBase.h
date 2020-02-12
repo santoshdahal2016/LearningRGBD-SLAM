@@ -66,7 +66,7 @@ RESULT_OF_PNP estimateMotion (FRAME & frame1, FRAME & frame2, CAMERA_INTRINSIC_P
 class ParameterReader
 {
 public:
-    ParameterReader( string filename="./parameters.txt" )
+    ParameterReader( string filename="../parameters.txt" )
     {
         ifstream fin( filename.c_str() );
         if (!fin)
@@ -91,20 +91,47 @@ public:
             string value = str.substr( pos+1, str.length() );
             data[key] = value;
 
-            if ( !fin.good() )
+            if ( !fin.good() ){
                 break;
+
+            }
+
+
+
         }
     }
-    string getData( string key )
+
+    string getData(string key)
     {
-        map<string, string>::iterator iter = data.find(key);
-        if (iter == data.end())
-        {
-            cerr<<"Parameter name "<<key<<" not found!"<<endl;
-            return string("NOT_FOUND");
-        }
-        return iter->second;
+		// map<string, string>::iterator iter1 = data.find("good_match_threshold");
+  //       if (iter1 == data.end())
+  //       {
+  //           cerr<<"Parameter name "<<"good_match_threshold"<<" not found!"<<endl;
+  //           return string("NOT_FOUND");
+  //       }else{
+  //       	cout<<iter1->first<<endl;
+  //       }
+
+		for (const auto &p : data) {
+			// cout<<p.first<<key<<endl;
+			// cout<<"strcmp :"<<strcmp(p.first.c_str(), key.c_str())<<endl;
+			if(strcmp(p.first.c_str(), key.c_str()) == 32){
+				 cout<<p.second<<endl;
+				 return p.second;
+			}
+		}
+
+		cerr<<"Parameter name "<<key<<" not found!"<<endl;
+		return string("NOT_FOUND");
+
+        // map<string, string>::iterator iter = data.find(key);
+        // if (iter == data.end())
+        // {
+        //     cerr<<"Parameter name "<<key<<" not found!"<<endl;
+        //     return string("NOT_FOUND");
+        // }
     }
+
 public:
     map<string, string> data;
 };

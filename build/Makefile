@@ -111,30 +111,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named detect_features
+# Target rules for targets named generate_pointcloud
 
 # Build rule for target.
-detect_features: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 detect_features
-.PHONY : detect_features
+generate_pointcloud: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 generate_pointcloud
+.PHONY : generate_pointcloud
 
 # fast build rule for target.
-detect_features/fast:
-	$(MAKE) -f CMakeFiles/detect_features.dir/build.make CMakeFiles/detect_features.dir/build
-.PHONY : detect_features/fast
-
-#=============================================================================
-# Target rules for targets named slambase
-
-# Build rule for target.
-slambase: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 slambase
-.PHONY : slambase
-
-# fast build rule for target.
-slambase/fast:
-	$(MAKE) -f CMakeFiles/slambase.dir/build.make CMakeFiles/slambase.dir/build
-.PHONY : slambase/fast
+generate_pointcloud/fast:
+	$(MAKE) -f CMakeFiles/generate_pointcloud.dir/build.make CMakeFiles/generate_pointcloud.dir/build
+.PHONY : generate_pointcloud/fast
 
 #=============================================================================
 # Target rules for targets named main
@@ -150,17 +137,43 @@ main/fast:
 .PHONY : main/fast
 
 #=============================================================================
-# Target rules for targets named generate_pointcloud
+# Target rules for targets named slambase
 
 # Build rule for target.
-generate_pointcloud: cmake_check_build_system
-	$(MAKE) -f CMakeFiles/Makefile2 generate_pointcloud
-.PHONY : generate_pointcloud
+slambase: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 slambase
+.PHONY : slambase
 
 # fast build rule for target.
-generate_pointcloud/fast:
-	$(MAKE) -f CMakeFiles/generate_pointcloud.dir/build.make CMakeFiles/generate_pointcloud.dir/build
-.PHONY : generate_pointcloud/fast
+slambase/fast:
+	$(MAKE) -f CMakeFiles/slambase.dir/build.make CMakeFiles/slambase.dir/build
+.PHONY : slambase/fast
+
+#=============================================================================
+# Target rules for targets named detect_features
+
+# Build rule for target.
+detect_features: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 detect_features
+.PHONY : detect_features
+
+# fast build rule for target.
+detect_features/fast:
+	$(MAKE) -f CMakeFiles/detect_features.dir/build.make CMakeFiles/detect_features.dir/build
+.PHONY : detect_features/fast
+
+#=============================================================================
+# Target rules for targets named joinPointCloud
+
+# Build rule for target.
+joinPointCloud: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 joinPointCloud
+.PHONY : joinPointCloud
+
+# fast build rule for target.
+joinPointCloud/fast:
+	$(MAKE) -f CMakeFiles/joinPointCloud.dir/build.make CMakeFiles/joinPointCloud.dir/build
+.PHONY : joinPointCloud/fast
 
 src/detectFeatures.o: src/detectFeatures.cpp.o
 
@@ -215,6 +228,33 @@ src/generatePointCloud.s: src/generatePointCloud.cpp.s
 src/generatePointCloud.cpp.s:
 	$(MAKE) -f CMakeFiles/generate_pointcloud.dir/build.make CMakeFiles/generate_pointcloud.dir/src/generatePointCloud.cpp.s
 .PHONY : src/generatePointCloud.cpp.s
+
+src/joinPointCloud.o: src/joinPointCloud.cpp.o
+
+.PHONY : src/joinPointCloud.o
+
+# target to build an object file
+src/joinPointCloud.cpp.o:
+	$(MAKE) -f CMakeFiles/joinPointCloud.dir/build.make CMakeFiles/joinPointCloud.dir/src/joinPointCloud.cpp.o
+.PHONY : src/joinPointCloud.cpp.o
+
+src/joinPointCloud.i: src/joinPointCloud.cpp.i
+
+.PHONY : src/joinPointCloud.i
+
+# target to preprocess a source file
+src/joinPointCloud.cpp.i:
+	$(MAKE) -f CMakeFiles/joinPointCloud.dir/build.make CMakeFiles/joinPointCloud.dir/src/joinPointCloud.cpp.i
+.PHONY : src/joinPointCloud.cpp.i
+
+src/joinPointCloud.s: src/joinPointCloud.cpp.s
+
+.PHONY : src/joinPointCloud.s
+
+# target to generate assembly for a file
+src/joinPointCloud.cpp.s:
+	$(MAKE) -f CMakeFiles/joinPointCloud.dir/build.make CMakeFiles/joinPointCloud.dir/src/joinPointCloud.cpp.s
+.PHONY : src/joinPointCloud.cpp.s
 
 src/main.o: src/main.cpp.o
 
@@ -277,17 +317,21 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
-	@echo "... detect_features"
-	@echo "... slambase"
-	@echo "... edit_cache"
-	@echo "... main"
 	@echo "... generate_pointcloud"
+	@echo "... main"
+	@echo "... edit_cache"
+	@echo "... slambase"
+	@echo "... detect_features"
+	@echo "... joinPointCloud"
 	@echo "... src/detectFeatures.o"
 	@echo "... src/detectFeatures.i"
 	@echo "... src/detectFeatures.s"
 	@echo "... src/generatePointCloud.o"
 	@echo "... src/generatePointCloud.i"
 	@echo "... src/generatePointCloud.s"
+	@echo "... src/joinPointCloud.o"
+	@echo "... src/joinPointCloud.i"
+	@echo "... src/joinPointCloud.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
