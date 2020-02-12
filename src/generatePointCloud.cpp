@@ -9,11 +9,19 @@ using namespace std;
 #include <opencv2/highgui/highgui.hpp>
 
 // PCL library 
+// used for saving pointcloud data to file
 #include <pcl/io/pcd_io.h>
+
+// define various type of point
 #include <pcl/point_types.h>
 
 // Define the point cloud type 
+
+// point containing XYZRGBA  data
 typedef pcl::PointXYZRGBA PointT;
+
+// point cloud  of point(PointT)
+// PointCloud is template function so we need to provide type via <type>
 typedef pcl::PointCloud<PointT> PointCloud; 
 
 // camera internal reference 
@@ -38,13 +46,15 @@ int main( int argc, char** argv )
     depth = cv::imread( "../data/depth.png", -1 );
 
 
-	cv::namedWindow("Depth Image", cv::WINDOW_AUTOSIZE );
+	cv::namedWindow("Depth Image", cv::WINDOW_AUTOSIZE );	
     cv::imshow("Depth Image", depth);
     cv::waitKey(0);
     // Point cloud variable
     // Use smart pointer to create an empty point cloud. This pointer will be released automatically when used up. 
+    // watch  https://www.youtube.com/watch?v=UOB7-B2MfwA
     PointCloud::Ptr cloud ( new PointCloud );
-  
+
+
   	cout<<"-> Before loop of reading depth."<<endl;
 
     // traverse the depth map 

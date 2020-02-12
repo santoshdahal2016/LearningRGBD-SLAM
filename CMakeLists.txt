@@ -33,3 +33,11 @@ ADD_EXECUTABLE (generate_pointcloud src/generatePointCloud.cpp)
 
 TARGET_LINK_LIBRARIES (generate_pointcloud ${OpenCV_LIBS}  ${PCL_LIBRARIES})
 	
+ADD_LIBRARY( slambase src/slamBase.cpp )
+TARGET_LINK_LIBRARIES( slambase
+    ${OpenCV_LIBS} 
+    ${PCL_LIBRARIES} )
+
+
+ADD_EXECUTABLE (detect_features src/detectFeatures.cpp)
+TARGET_LINK_LIBRARIES (detect_features slambase ${OpenCV_LIBS}  ${PCL_LIBRARIES})

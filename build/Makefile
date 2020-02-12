@@ -111,6 +111,32 @@ depend:
 .PHONY : depend
 
 #=============================================================================
+# Target rules for targets named detect_features
+
+# Build rule for target.
+detect_features: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 detect_features
+.PHONY : detect_features
+
+# fast build rule for target.
+detect_features/fast:
+	$(MAKE) -f CMakeFiles/detect_features.dir/build.make CMakeFiles/detect_features.dir/build
+.PHONY : detect_features/fast
+
+#=============================================================================
+# Target rules for targets named slambase
+
+# Build rule for target.
+slambase: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 slambase
+.PHONY : slambase
+
+# fast build rule for target.
+slambase/fast:
+	$(MAKE) -f CMakeFiles/slambase.dir/build.make CMakeFiles/slambase.dir/build
+.PHONY : slambase/fast
+
+#=============================================================================
 # Target rules for targets named main
 
 # Build rule for target.
@@ -135,6 +161,33 @@ generate_pointcloud: cmake_check_build_system
 generate_pointcloud/fast:
 	$(MAKE) -f CMakeFiles/generate_pointcloud.dir/build.make CMakeFiles/generate_pointcloud.dir/build
 .PHONY : generate_pointcloud/fast
+
+src/detectFeatures.o: src/detectFeatures.cpp.o
+
+.PHONY : src/detectFeatures.o
+
+# target to build an object file
+src/detectFeatures.cpp.o:
+	$(MAKE) -f CMakeFiles/detect_features.dir/build.make CMakeFiles/detect_features.dir/src/detectFeatures.cpp.o
+.PHONY : src/detectFeatures.cpp.o
+
+src/detectFeatures.i: src/detectFeatures.cpp.i
+
+.PHONY : src/detectFeatures.i
+
+# target to preprocess a source file
+src/detectFeatures.cpp.i:
+	$(MAKE) -f CMakeFiles/detect_features.dir/build.make CMakeFiles/detect_features.dir/src/detectFeatures.cpp.i
+.PHONY : src/detectFeatures.cpp.i
+
+src/detectFeatures.s: src/detectFeatures.cpp.s
+
+.PHONY : src/detectFeatures.s
+
+# target to generate assembly for a file
+src/detectFeatures.cpp.s:
+	$(MAKE) -f CMakeFiles/detect_features.dir/build.make CMakeFiles/detect_features.dir/src/detectFeatures.cpp.s
+.PHONY : src/detectFeatures.cpp.s
 
 src/generatePointCloud.o: src/generatePointCloud.cpp.o
 
@@ -190,6 +243,33 @@ src/main.cpp.s:
 	$(MAKE) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
 
+src/slamBase.o: src/slamBase.cpp.o
+
+.PHONY : src/slamBase.o
+
+# target to build an object file
+src/slamBase.cpp.o:
+	$(MAKE) -f CMakeFiles/slambase.dir/build.make CMakeFiles/slambase.dir/src/slamBase.cpp.o
+.PHONY : src/slamBase.cpp.o
+
+src/slamBase.i: src/slamBase.cpp.i
+
+.PHONY : src/slamBase.i
+
+# target to preprocess a source file
+src/slamBase.cpp.i:
+	$(MAKE) -f CMakeFiles/slambase.dir/build.make CMakeFiles/slambase.dir/src/slamBase.cpp.i
+.PHONY : src/slamBase.cpp.i
+
+src/slamBase.s: src/slamBase.cpp.s
+
+.PHONY : src/slamBase.s
+
+# target to generate assembly for a file
+src/slamBase.cpp.s:
+	$(MAKE) -f CMakeFiles/slambase.dir/build.make CMakeFiles/slambase.dir/src/slamBase.cpp.s
+.PHONY : src/slamBase.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -197,15 +277,23 @@ help:
 	@echo "... clean"
 	@echo "... depend"
 	@echo "... rebuild_cache"
+	@echo "... detect_features"
+	@echo "... slambase"
 	@echo "... edit_cache"
 	@echo "... main"
 	@echo "... generate_pointcloud"
+	@echo "... src/detectFeatures.o"
+	@echo "... src/detectFeatures.i"
+	@echo "... src/detectFeatures.s"
 	@echo "... src/generatePointCloud.o"
 	@echo "... src/generatePointCloud.i"
 	@echo "... src/generatePointCloud.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/slamBase.o"
+	@echo "... src/slamBase.i"
+	@echo "... src/slamBase.s"
 .PHONY : help
 
 

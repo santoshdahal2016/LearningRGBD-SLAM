@@ -1,4 +1,6 @@
 /home/santosh/Projects/visual slam diy/build/CMakeFiles/rebuild_cache.dir
+/home/santosh/Projects/visual slam diy/build/CMakeFiles/detect_features.dir
+/home/santosh/Projects/visual slam diy/build/CMakeFiles/slambase.dir
 /home/santosh/Projects/visual slam diy/build/CMakeFiles/edit_cache.dir
 /home/santosh/Projects/visual slam diy/build/CMakeFiles/main.dir
 /home/santosh/Projects/visual slam diy/build/CMakeFiles/generate_pointcloud.dir
