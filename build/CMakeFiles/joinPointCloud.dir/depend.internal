@@ -16,11 +16,13 @@ CMakeFiles/joinPointCloud.dir/src/joinPointCloud.cpp.o
  /usr/include/pcl-1.8/pcl/cloud_iterator.h
  /usr/include/pcl-1.8/pcl/common/centroid.h
  /usr/include/pcl-1.8/pcl/common/colors.h
+ /usr/include/pcl-1.8/pcl/common/common.h
  /usr/include/pcl-1.8/pcl/common/concatenate.h
  /usr/include/pcl-1.8/pcl/common/copy_point.h
  /usr/include/pcl-1.8/pcl/common/eigen.h
  /usr/include/pcl-1.8/pcl/common/impl/accumulators.hpp
  /usr/include/pcl-1.8/pcl/common/impl/centroid.hpp
+ /usr/include/pcl-1.8/pcl/common/impl/common.hpp
  /usr/include/pcl-1.8/pcl/common/impl/copy_point.hpp
  /usr/include/pcl-1.8/pcl/common/impl/eigen.hpp
  /usr/include/pcl-1.8/pcl/common/impl/io.hpp
@@ -32,6 +34,11 @@ CMakeFiles/joinPointCloud.dir/src/joinPointCloud.cpp.o
  /usr/include/pcl-1.8/pcl/conversions.h
  /usr/include/pcl-1.8/pcl/correspondence.h
  /usr/include/pcl-1.8/pcl/exceptions.h
+ /usr/include/pcl-1.8/pcl/filters/boost.h
+ /usr/include/pcl-1.8/pcl/filters/filter.h
+ /usr/include/pcl-1.8/pcl/filters/impl/filter.hpp
+ /usr/include/pcl-1.8/pcl/filters/impl/voxel_grid.hpp
+ /usr/include/pcl-1.8/pcl/filters/voxel_grid.h
  /usr/include/pcl-1.8/pcl/for_each_type.h
  /usr/include/pcl-1.8/pcl/geometry/planar_polygon.h
  /usr/include/pcl-1.8/pcl/impl/cloud_iterator.hpp

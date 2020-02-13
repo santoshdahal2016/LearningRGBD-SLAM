@@ -97,6 +97,43 @@ clean: CMakeFiles/generate_pointcloud.dir/clean
 .PHONY : clean
 
 #=============================================================================
+# Target rules for target CMakeFiles/slambase.dir
+
+# All Build rule for target.
+CMakeFiles/slambase.dir/all:
+	$(MAKE) -f CMakeFiles/slambase.dir/build.make CMakeFiles/slambase.dir/depend
+	$(MAKE) -f CMakeFiles/slambase.dir/build.make CMakeFiles/slambase.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/santosh/Projects/visual slam diy/build/CMakeFiles" --progress-num=9,10 "Built target slambase"
+.PHONY : CMakeFiles/slambase.dir/all
+
+# Include target in all.
+all: CMakeFiles/slambase.dir/all
+
+.PHONY : all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/slambase.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/santosh/Projects/visual slam diy/build/CMakeFiles" 2
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/slambase.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/santosh/Projects/visual slam diy/build/CMakeFiles" 0
+.PHONY : CMakeFiles/slambase.dir/rule
+
+# Convenience name for target.
+slambase: CMakeFiles/slambase.dir/rule
+
+.PHONY : slambase
+
+# clean rule for target.
+CMakeFiles/slambase.dir/clean:
+	$(MAKE) -f CMakeFiles/slambase.dir/build.make CMakeFiles/slambase.dir/clean
+.PHONY : CMakeFiles/slambase.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/slambase.dir/clean
+
+.PHONY : clean
+
+#=============================================================================
 # Target rules for target CMakeFiles/main.dir
 
 # All Build rule for target.
@@ -134,39 +171,39 @@ clean: CMakeFiles/main.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/slambase.dir
+# Target rules for target CMakeFiles/visualOdometry.dir
 
 # All Build rule for target.
-CMakeFiles/slambase.dir/all:
-	$(MAKE) -f CMakeFiles/slambase.dir/build.make CMakeFiles/slambase.dir/depend
-	$(MAKE) -f CMakeFiles/slambase.dir/build.make CMakeFiles/slambase.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/santosh/Projects/visual slam diy/build/CMakeFiles" --progress-num=9,10 "Built target slambase"
-.PHONY : CMakeFiles/slambase.dir/all
+CMakeFiles/visualOdometry.dir/all: CMakeFiles/slambase.dir/all
+	$(MAKE) -f CMakeFiles/visualOdometry.dir/build.make CMakeFiles/visualOdometry.dir/depend
+	$(MAKE) -f CMakeFiles/visualOdometry.dir/build.make CMakeFiles/visualOdometry.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/home/santosh/Projects/visual slam diy/build/CMakeFiles" --progress-num=11,12 "Built target visualOdometry"
+.PHONY : CMakeFiles/visualOdometry.dir/all
 
 # Include target in all.
-all: CMakeFiles/slambase.dir/all
+all: CMakeFiles/visualOdometry.dir/all
 
 .PHONY : all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/slambase.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/home/santosh/Projects/visual slam diy/build/CMakeFiles" 2
-	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/slambase.dir/all
+CMakeFiles/visualOdometry.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start "/home/santosh/Projects/visual slam diy/build/CMakeFiles" 4
+	$(MAKE) -f CMakeFiles/Makefile2 CMakeFiles/visualOdometry.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start "/home/santosh/Projects/visual slam diy/build/CMakeFiles" 0
-.PHONY : CMakeFiles/slambase.dir/rule
+.PHONY : CMakeFiles/visualOdometry.dir/rule
 
 # Convenience name for target.
-slambase: CMakeFiles/slambase.dir/rule
+visualOdometry: CMakeFiles/visualOdometry.dir/rule
 
-.PHONY : slambase
-
-# clean rule for target.
-CMakeFiles/slambase.dir/clean:
-	$(MAKE) -f CMakeFiles/slambase.dir/build.make CMakeFiles/slambase.dir/clean
-.PHONY : CMakeFiles/slambase.dir/clean
+.PHONY : visualOdometry
 
 # clean rule for target.
-clean: CMakeFiles/slambase.dir/clean
+CMakeFiles/visualOdometry.dir/clean:
+	$(MAKE) -f CMakeFiles/visualOdometry.dir/build.make CMakeFiles/visualOdometry.dir/clean
+.PHONY : CMakeFiles/visualOdometry.dir/clean
+
+# clean rule for target.
+clean: CMakeFiles/visualOdometry.dir/clean
 
 .PHONY : clean
 

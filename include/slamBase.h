@@ -6,6 +6,12 @@
 
 using namespace std;
 
+
+// Eigen
+#include <Eigen/Core>
+#include <Eigen/Geometry>
+
+
 // OpenCV library 
 #include <opencv2/core/core.hpp>
 #include <opencv2/highgui/highgui.hpp>
@@ -14,6 +20,11 @@ using namespace std;
 // PCL library 
 #include <pcl/io/pcd_io.h>
 #include <pcl/point_types.h>
+#include <pcl/common/transforms.h>
+#include <pcl/visualization/cloud_viewer.h>
+// voxel_grid is used for downsampling
+#include <pcl/filters/voxel_grid.h>
+
 
 // Define the point cloud type 
 typedef pcl::PointXYZRGBA PointT;
@@ -60,6 +71,11 @@ void  computeKeyPointsAndDesp (FRAME & frame);
 // input: frame 1 and frame 2, camera internal parameters
 RESULT_OF_PNP estimateMotion (FRAME & frame1, FRAME & frame2, CAMERA_INTRINSIC_PARAMETERS & camera);
 
+// cvMat2Eigen
+Eigen::Isometry3d cvMat2Eigen( cv::Mat& rvec, cv::Mat& tvec );
+
+// joinPointCloud 
+PointCloud::Ptr joinPointCloud( PointCloud::Ptr original, FRAME& newFrame, Eigen::Isometry3d T, CAMERA_INTRINSIC_PARAMETERS& camera ) ;
 
 
 // Parameter reading class
@@ -116,7 +132,7 @@ public:
 			// cout<<p.first<<key<<endl;
 			// cout<<"strcmp :"<<strcmp(p.first.c_str(), key.c_str())<<endl;
 			if(strcmp(p.first.c_str(), key.c_str()) == 32){
-				 cout<<p.second<<endl;
+				 // cout<<p.second<<endl;
 				 return p.second;
 			}
 		}
@@ -135,3 +151,15 @@ public:
 public:
     map<string, string> data;
 };
+
+inline static CAMERA_INTRINSIC_PARAMETERS getDefaultCamera()
+{
+    ParameterReader pd;
+    CAMERA_INTRINSIC_PARAMETERS camera;
+    camera.fx = atof( pd.getData( "camera.fx" ).c_str());
+    camera.fy = atof( pd.getData( "camera.fy" ).c_str());
+    camera.cx = atof( pd.getData( "camera.cx" ).c_str());
+    camera.cy = atof( pd.getData( "camera.cy" ).c_str());
+    camera.scale = atof( pd.getData( "camera.scale" ).c_str() );
+    return camera;
+}

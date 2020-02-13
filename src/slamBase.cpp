@@ -6,7 +6,7 @@ PointCloud::Ptr image2PointCloud( cv::Mat& rgb, cv::Mat& depth, CAMERA_INTRINSIC
     // Use smart pointer to create an empty point cloud. This pointer will be released automatically when used up. 
     PointCloud::Ptr cloud ( new PointCloud );
   
-  	cout<<"-> Before loop of reading depth."<<endl;
+  	// cout<<"-> Before loop of reading depth."<<endl;
 
     // traverse the depth map 
     for (int m = 0; m < depth.rows; m++)
@@ -35,10 +35,10 @@ PointCloud::Ptr image2PointCloud( cv::Mat& rgb, cv::Mat& depth, CAMERA_INTRINSIC
             cloud->points.push_back(p);
         }
     // set and saved point cloud 
-    cout<<"-> After loop"<<endl;
+    // cout<<"-> After loop"<<endl;
     cloud->height = 1;
     cloud->width = cloud->points.size();
-    cout<<"point cloud size = "<<cloud->points.size()<<endl;
+    // cout<<"point cloud size = "<<cloud->points.size()<<endl;
     cloud->is_dense = false;
     return cloud;
 }
@@ -77,15 +77,16 @@ RESULT_OF_PNP estimateMotion( FRAME& frame1, FRAME& frame2, CAMERA_INTRINSIC_PAR
     static ParameterReader pd;
     vector< cv::DMatch > matches;
     cv::BFMatcher matcher;
-    matcher.match( frame1.desp, frame2.desp, matches );
+    matcher.match(frame1.desp, frame2.desp, matches );
    
-    cout<<"find total "<<matches.size()<<" matches."<<endl;
+    // cout<<"find total "<<matches.size()<<" matches."<<endl;
     vector< cv::DMatch > goodMatches;
-    double minDis = 9999;
+    double minDis = 99999;
     double good_match_threshold = atof( pd.getData( "good_match_threshold" ).c_str() );
     for ( size_t i=0; i<matches.size(); i++ )
     {
-        if ( matches[i].distance < minDis )
+        // cout<<"Distance: "<<matches[i].distance<<":"<<minDis<<endl;
+        if (matches[i].distance < minDis && matches[i].distance != 0 )
             minDis = matches[i].distance;
     }
 
@@ -95,7 +96,7 @@ RESULT_OF_PNP estimateMotion( FRAME& frame1, FRAME& frame2, CAMERA_INTRINSIC_PAR
             goodMatches.push_back( matches[i] );
     }
 
-    cout<<"good matches: "<<goodMatches.size()<<endl;
+    // cout<<"good matches: "<<goodMatches.size()<<endl;
     // 3D point of the first frame
     vector<cv::Point3f> pts_obj;
     // Image point of the second frame
@@ -124,7 +125,7 @@ RESULT_OF_PNP estimateMotion( FRAME& frame1, FRAME& frame2, CAMERA_INTRINSIC_PAR
         {0, 0, 1}
     };
 
-    cout<<"solving pnp"<<endl;
+    // cout<<"solving pnp"<<endl;
     // Build Camera Matrix
     cv::Mat cameraMatrix( 3, 3, CV_64F, camera_matrix_data );
     cv::Mat rvec, tvec, inliers;
@@ -137,4 +138,48 @@ RESULT_OF_PNP estimateMotion( FRAME& frame1, FRAME& frame2, CAMERA_INTRINSIC_PAR
     result.inliers = inliers.rows;
 
     return result;
+}
+
+// cvMat2Eigen
+Eigen::Isometry3d cvMat2Eigen( cv::Mat& rvec, cv::Mat& tvec )
+{
+    cv::Mat R;
+    cv::Rodrigues( rvec, R );
+    Eigen::Matrix3d r;
+    for ( int i=0; i<3; i++ )
+        for ( int j=0; j<3; j++ ) 
+            r(i,j) = R.at<double>(i,j);
+  
+    // Convert the translation vector and rotation matrix into a transformation matrix
+    Eigen::Isometry3d T = Eigen::Isometry3d::Identity();
+
+    Eigen::AngleAxisd angle(r);
+    T = angle;
+    T(0,3) = tvec.at<double>(0,0); 
+    T(1,3) = tvec.at<double>(1,0); 
+    T(2,3) = tvec.at<double>(2,0);
+    return T;
+}
+
+// joinPointCloud 
+// input: original point cloud, new frame and its pose
+// output: the image after adding the new frame to the original frame
+PointCloud::Ptr joinPointCloud( PointCloud::Ptr original, FRAME& newFrame, Eigen::Isometry3d T, CAMERA_INTRINSIC_PARAMETERS& camera ) 
+{
+    PointCloud::Ptr newCloud = image2PointCloud( newFrame.rgb, newFrame.depth, camera );
+
+    // Merge point clouds
+    PointCloud::Ptr output (new PointCloud());
+    pcl::transformPointCloud( *original, *output, T.matrix() );
+    *newCloud += *output;
+
+    // Voxel grid filtering downsampling
+    static pcl::VoxelGrid<PointT> voxel;
+    static ParameterReader pd;
+    double gridsize = atof( pd.getData("voxel_grid").c_str() );
+    voxel.setLeafSize( gridsize, gridsize, gridsize );
+    voxel.setInputCloud(newCloud);
+    PointCloud::Ptr tmp(new PointCloud());
+    voxel.filter(*tmp);
+    return tmp;
 }

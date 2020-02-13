@@ -18,10 +18,10 @@ int main( int argc, char** argv )
 
     FRAME frame1, frame2;
     
-    frame1.rgb = cv::imread( "../data/rgb1.png" );
-    frame1.depth = cv::imread( "../data/depth1.png", -1);
-    frame2.rgb = cv::imread( "../data/rgb2.png" );
-    frame2.depth = cv::imread( "../data/depth2.png", -1 );
+    frame1.rgb = cv::imread( "../data/rgb_png/3.png" );
+    frame1.depth = cv::imread( "../data/depth_png/3.png", -1);
+    frame2.rgb = cv::imread( "../data/rgb_png/4.png" );
+    frame2.depth = cv::imread( "../data/depth_png/4.png", -1 );
 
 
     computeKeyPointsAndDesp( frame1);
@@ -69,6 +69,14 @@ int main( int argc, char** argv )
     *output += *cloud2;
     pcl::io::savePCDFile("./result.pcd", *output);
     cout<<"Final result saved."<<endl;
+
+    // PointCloud::Ptr cloud (new PointCloud);
+
+    // if(pcl::io::loadPCDFile<PointT> ("./result.pcd", *cloud) == -1) //* load the file
+    // {
+    //     PCL_ERROR ("Couldn't read file test_pcd.pcd \n");
+    //     return (-1);
+    // }
 
     pcl::visualization::CloudViewer viewer( "viewer" );
     viewer.showCloud( output );
