@@ -163,6 +163,19 @@ visualOdometry/fast:
 .PHONY : visualOdometry/fast
 
 #=============================================================================
+# Target rules for targets named slamEnd
+
+# Build rule for target.
+slamEnd: cmake_check_build_system
+	$(MAKE) -f CMakeFiles/Makefile2 slamEnd
+.PHONY : slamEnd
+
+# fast build rule for target.
+slamEnd/fast:
+	$(MAKE) -f CMakeFiles/slamEnd.dir/build.make CMakeFiles/slamEnd.dir/build
+.PHONY : slamEnd/fast
+
+#=============================================================================
 # Target rules for targets named detect_features
 
 # Build rule for target.
@@ -323,6 +336,33 @@ src/slamBase.cpp.s:
 	$(MAKE) -f CMakeFiles/slambase.dir/build.make CMakeFiles/slambase.dir/src/slamBase.cpp.s
 .PHONY : src/slamBase.cpp.s
 
+src/slamEnd.o: src/slamEnd.cpp.o
+
+.PHONY : src/slamEnd.o
+
+# target to build an object file
+src/slamEnd.cpp.o:
+	$(MAKE) -f CMakeFiles/slamEnd.dir/build.make CMakeFiles/slamEnd.dir/src/slamEnd.cpp.o
+.PHONY : src/slamEnd.cpp.o
+
+src/slamEnd.i: src/slamEnd.cpp.i
+
+.PHONY : src/slamEnd.i
+
+# target to preprocess a source file
+src/slamEnd.cpp.i:
+	$(MAKE) -f CMakeFiles/slamEnd.dir/build.make CMakeFiles/slamEnd.dir/src/slamEnd.cpp.i
+.PHONY : src/slamEnd.cpp.i
+
+src/slamEnd.s: src/slamEnd.cpp.s
+
+.PHONY : src/slamEnd.s
+
+# target to generate assembly for a file
+src/slamEnd.cpp.s:
+	$(MAKE) -f CMakeFiles/slamEnd.dir/build.make CMakeFiles/slamEnd.dir/src/slamEnd.cpp.s
+.PHONY : src/slamEnd.cpp.s
+
 src/visualOdometry.o: src/visualOdometry.cpp.o
 
 .PHONY : src/visualOdometry.o
@@ -362,6 +402,7 @@ help:
 	@echo "... slambase"
 	@echo "... main"
 	@echo "... visualOdometry"
+	@echo "... slamEnd"
 	@echo "... detect_features"
 	@echo "... joinPointCloud"
 	@echo "... src/detectFeatures.o"
@@ -379,6 +420,9 @@ help:
 	@echo "... src/slamBase.o"
 	@echo "... src/slamBase.i"
 	@echo "... src/slamBase.s"
+	@echo "... src/slamEnd.o"
+	@echo "... src/slamEnd.i"
+	@echo "... src/slamEnd.s"
 	@echo "... src/visualOdometry.o"
 	@echo "... src/visualOdometry.i"
 	@echo "... src/visualOdometry.s"

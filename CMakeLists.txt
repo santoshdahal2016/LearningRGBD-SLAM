@@ -14,6 +14,16 @@ INCLUDE_DIRECTORIES (${PCL_INCLUDE_DIRS})
 LINK_LIBRARIES (${PCL_LIBRARY_DIRS})
 
 
+LIST( APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake_modules )
+SET( G2O_ROOT /usr/local/include/g2o )
+FIND_PACKAGE( G2O REQUIRED )
+
+
+# CSparse
+FIND_PACKAGE( CSparse REQUIRED )
+INCLUDE_DIRECTORIES( ${G2O_INCLUDE_DIR} ${CSPARSE_INCLUDE_DIR} )
+
+
 #Set the directory of executable binary files
 SET (EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin) 
 
@@ -51,6 +61,13 @@ TARGET_LINK_LIBRARIES( joinPointCloud
 
 ADD_EXECUTABLE (visualOdometry src/visualOdometry.cpp)
 TARGET_LINK_LIBRARIES (visualOdometry
-    slambase
+    slambase 
     ${OpenCV_LIBS} 
     ${PCL_LIBRARIES} )
+
+ADD_EXECUTABLE( slamEnd src/slamEnd.cpp )
+TARGET_LINK_LIBRARIES( slamEnd
+    slambase
+    ${OpenCV_LIBS}
+    ${PCL_LIBRARIES}
+    g2o_core g2o_types_slam3d g2o_solver_csparse g2o_stuff g2o_csparse_extension ${CSPARSE_LIBRARY})

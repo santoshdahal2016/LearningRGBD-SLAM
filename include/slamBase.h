@@ -41,6 +41,7 @@ struct CAMERA_INTRINSIC_PARAMETERS
 // Single Image Frame Structure
 struct FRAME
 {
+    int frameID;
     cv::Mat rgb, depth; 
     cv::Mat desp;       
     vector<cv::KeyPoint> kp; 

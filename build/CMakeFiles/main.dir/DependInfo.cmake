@@ -50,6 +50,8 @@ set(CMAKE_CXX_TARGET_INCLUDE_PATH
   "/usr/local/include/eigen3"
   "/usr/include/ni"
   "/usr/include/openni2"
+  "/usr/local/include"
+  "/usr/include/suitesparse"
   "../include"
   )
 
